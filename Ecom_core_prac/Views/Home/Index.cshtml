@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function() {
+        $.get("https://dummyjson.com/products", function(data, status) {
+            $.each(data.products, function(index, obj) {
+                var pdData = `<div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                    <img src="${obj.thumbnail }"  class="card-img-top" alt="...">
+                    <h5 class="card-title">${ obj.title }</h5>
+                    <p class="card-text">${ obj.price}</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                    </div>
+                    </div>`;
+                $('#dvProductsRow').append(pdData);
+            });
+        });
+
+        // $.post('http:localhost:5132/Product/SaveProduct', baseProducts('/name: "John", time: "2pm"'))
+        //     .done(function(data, status) {
+        //         console.log(data);
+        //     })
+        //     .fail(function(data) {
+        //         alert(data.statusText);
+        //     });
+    });
+</script>
+
+<div id="dvProductsRow" class="row">
+</div>
