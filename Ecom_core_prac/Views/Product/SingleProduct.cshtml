@@ -12,6 +12,9 @@
             $('#pdDescription').html(data.description);
             $('#pdPrice').html(data.price);
             $('#pdImgUrl').attr('src', data.images[0]);
+             $('#Image1').attr('src', data.images[0]);
+             $('#Image2').attr('src',  data.thumbnail);
+
         });
     })
     // $.post("http://localhost:5153/Product/SaveProduct", baseProducts)//{ name: "John", time: "2pm" }
@@ -40,9 +43,9 @@
 </div>
 <div id="dvPdImages" class="row" style="width:200px">
     <div class="col" style="width:60px;border-right: 1px solid #ccc;">
-        <img src="https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png" class="img-fluid rounded-start" alt="...">
+        <img id="Image1" src=""  class="img-fluid rounded-start" alt="...">
     </div>
     <div class="col" style="width:60px">
-        <img src="https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png" class="img-fluid rounded-start" alt="...">
+        <img id="Image2" src="" class="img-fluid rounded-start" alt="...">
     </div>
 </div>

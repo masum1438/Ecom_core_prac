@@ -10,7 +10,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header style="position:fixed;top:0px;z-index:3;width:100%;">
+    @* style="position:fixed;top:0px;z-index:3;width:100%;margin-bottom:70px" *@
+    <header style="position:fixed;top:0px;z-index:3;width:100%; margin-bottom:70px">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Ecom_core_prac</a>
@@ -34,8 +35,8 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="container" style="margin:80px;">
+        <main role="main" class="">
             @RenderBody()
         </main>
     </div>
