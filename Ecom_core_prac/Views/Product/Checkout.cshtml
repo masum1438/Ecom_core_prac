@@ -1,0 +1,65 @@
+﻿<script>
+    $(document).ready(function () {
+          var lsData = localStorage.getItem("CartProducts");
+       var ListCartProductNew = JSON.parse(lsData);
+    //if (window.location.href.indexOf('CartDetails') != - 1)
+    {
+               $.each(ListCartProductNew, function (index, obj) {
+                   $('#dvCheckputProducts').append(`
+                       <div class="card mb-3 " style="width:100% ">
+                         <div class="row g-0">
+                           <div class="col-md-4">
+                             <img src="${obj.thumbnail}" class="img-fluid rounded-start" alt="...">
+                           </div>
+                           <div class="col-md-8">
+                             <div class="card-body">
+                               <h5 class="card-title">${obj.title}</h5>
+                               <p class="card-text">${obj.price}</p>
+                              <p class="card-text"><small class="text-muted">Total: 1</small></p>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+                   `);
+               })
+           }
+    });
+</script>
+
+<div class="row">
+    <div class="col col-sm-8">
+        <div class="card">
+            <h5 class="card-header">Personal Details</h5>
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+        <div class="card">
+            <h5 class="card-header">Shipping/Billing Details</h5>
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="col col-sm-4">
+        <div class="card">
+            <h5 class="card-header">Product Details</h5>
+            <div class="card-body" id="dvCheckputProducts">
+            </div>
+        </div>
+        <div class="card">
+            <h5 class="card-header">Payment Details</h5>
+            <div class="card-body">
+                <ul>
+                    <li><input type="radio" /> Cash On Delivery</li>
+                </ul>
+                <a href="#" class="btn btn-primary">Submit Order</a>
+            </div>
+        </div>
+    </div>
+</div>
