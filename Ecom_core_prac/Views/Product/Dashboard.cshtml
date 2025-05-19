@@ -1,0 +1,48 @@
+﻿@model List<Ecom_core_prac.Models.BaseEquipment>
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white ">
+            <h5 class="mb-0 justify-content-center text-center">Customer Orders</h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover align-middle mb-0">
+                    <thead class="table-primary text-center">
+                        <tr>
+                            <th scope="col">CustId</th>
+                            <th scope="col">CustName</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">PhoneNumber</th>
+                            <th scope="col">ProductDetails</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">OrderDate</th>
+                            <th scope="col">PaymentMethod</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center">@item.CustId</td>
+                                <td>@item.CustName</td>
+                                <td>@item.Address</td>
+                                <td>@item.PhoneNumber</td>
+                                <td>@item.ProductDetails</td>
+                                <td>@item.Price</td>
+                                <td>@item.OrderDate?.ToString("yyyy-MM-dd")</td>
+                                <td>@item.PaymentMethod</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,7 @@
-using System.Diagnostics;
+
 using Ecom_core_prac.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ecom_core_prac.Controllers
 {
@@ -8,10 +9,18 @@ namespace Ecom_core_prac.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        private readonly AppDbContext _context;
+
+
+        public HomeController(AppDbContext context, ILogger<HomeController> logger)
         {
+            _context = context;
             _logger = logger;
         }
+
+       
+        
 
         public IActionResult Index()
         {
@@ -21,12 +30,6 @@ namespace Ecom_core_prac.Controllers
         public IActionResult Privacy()
         {
             return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
