@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Data;
+
 using System.Diagnostics;
 
 namespace Ecom_core_prac.Models
@@ -16,7 +17,8 @@ namespace Ecom_core_prac.Models
         public bool CheckCustomer(string userName, string password)
         {
             bool status = false;
-            string connString = _configuration.GetConnectionString("ConnString");
+            string connString = DbConnection.GetDBConstring();
+            //string connString = _configuration.GetConnectionString("ConnString");
 
             using (SqlConnection sqlConnection = new SqlConnection(connString))
             {
@@ -51,7 +53,8 @@ namespace Ecom_core_prac.Models
         public bool VerifyUser(string userName, string password)
         {
             bool status = false;
-            string connString = _configuration.GetConnectionString("ConnString");
+             //string connString = _configuration.GetConnectionString("ConnString");
+            string connString = DbConnection.GetDBConstring();
 
             using (SqlConnection sqlConnection = new SqlConnection(connString))
             {

@@ -118,8 +118,13 @@ namespace Ecom_core_prac.Controllers
                 }
 
                 // Additional password strength validation (recommended)
-               
 
+                bool check = _baseAccount.CheckCustomer(frmColl["Name"], frmColl["Password"]);
+                if (check)
+                {
+                    ViewBag.Message = "Please , Insert unique UserName!";
+                    return View("Login");
+                }
                 // Save user to database
                 bool isSaved = _baseAccount.SaveUserToDatabase(frmColl);
 

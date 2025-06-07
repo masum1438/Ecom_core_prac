@@ -1,5 +1,6 @@
 ﻿using Ecom_core_prac.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ecom_core_prac.Controllers
 {
@@ -17,11 +18,16 @@ namespace Ecom_core_prac.Controllers
            
         }
 
-        public IActionResult Dashboard()
+        public async Task<IActionResult> Dashboard()
         {
-            var equipments = _context.baseEquipments.ToList();
+            var equipments = await _context.BaseEquipments
+                .FromSqlRaw("EXEC spCore_LstCustomer")
+                .ToListAsync();
+
             return View(equipments);
         }
+
+
         public IActionResult SingleProduct()
         {
             //@Context.Request.Query["id"].ToString()

@@ -6,12 +6,12 @@ using System.Runtime.CompilerServices;
 
 namespace Ecom_core_prac.Models
 {
-    [Table("CoreCustomer")]
+    [Keyless]
     public class BaseEquipment
     {
-        [Key]
+        
         public int CustId { get; set; }
-        [Required]
+      
         public string CustName { get; set; }
         
         public string ProductDetails { get; set; }
@@ -30,6 +30,6 @@ namespace Ecom_core_prac.Models
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<BaseEquipment> baseEquipments { get; set; }
+        public DbSet<BaseEquipment> BaseEquipments { get; set; }
     }
 }
