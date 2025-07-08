@@ -1,72 +1,86 @@
-# 🛒 Ecom_core_prac
+# 🛒 **Ecom_core_prac**
 
-A lightweight, database-driven **E-commerce Practice Project** built with **ASP.NET Core MVC**, **ADO.NET**, and **SQL Server** using stored procedures. The project demonstrates user authentication, product listing, cart functionality, and customer order management.
+A lightweight, modular **E-commerce Practice Project** built using **ASP.NET Core MVC**, **ADO.NET**, **SQL Server**, and integrated with the external **[DummyJSON Products API](https://dummyjson.com/)**. This project showcases a full-stack implementation including **custom authentication**, **dynamic product loading via API**, **client-side cart management**, and **secure checkout**—all without ASP.NET Identity.
 
 ---
 
-## 📌 Features
+## 🌐 **Live Demo Features**
 
 ### 🔐 User Authentication
-- **Custom Login/Signup** with session-based authentication
-- Password Reset functionality
-- User validation using raw SQL (no ASP.NET Identity)
+- **Custom login, signup, and password reset** implemented using raw SQL queries
+- Session-based authentication (no ASP.NET Identity)
+- Backend integration with SQL Server `CoreMember` table for secure validation
 
-### 🧾 Product & Customer Management
-- Fetches product/customer data using stored procedures
-- Display product dashboard and details
-- Add customer order data with payment details
+### 📦 Dynamic Product Integration via API
+- Products are **fetched from the public [DummyJSON API](https://dummyjson.com/products)**
+- AJAX (`$.get`) is used to dynamically render product lists and details on the client side
+- Cart and product details pages use real-time API calls
 
-### 🛍️ Cart & Checkout Pages
-- Simple cart and checkout views
-- Form-based input handling using `IFormCollection`
+### 🛒 Cart & Checkout System
+- **Cart state stored in `localStorage`** for persistent user experience
+- Live cart count and total price calculation
+- Quantity auto-increment on repeated adds
+- Checkout page handles shipping, phone, and payment inputs via form
 
-### ⚙️ Admin Features
-- Add new users and customers via stored procedures
-- Prevent duplicate usernames
-- Password reset functionality with verification
+### 🧾 Order & Customer Management
+- Customer order details are saved in the database via stored procedures
+- Checkout form posts data to the server via AJAX for smooth UX
+- Admin can view order history in a responsive dashboard
 
 ---
 
-## 🧱 Architecture Overview
+## 🔧 **Tech Stack**
 
-### 🔧 Backend
-- **Framework:** ASP.NET Core MVC (.NET 6 or above)
-- **ORM:** ADO.NET with raw SQL and stored procedures
-- **Database:** SQL Server
+| Layer         | Technology                       |
+|---------------|----------------------------------|
+| Frontend      | HTML, Bootstrap, jQuery, AJAX    |
+| Backend       | ASP.NET Core MVC (.NET 6)        |
+| Data Access   | ADO.NET (no EF Core)             |
+| Database      | SQL Server + Stored Procedures   |
+| External API  | [DummyJSON](https://dummyjson.com/products) |
 
-### 🗂️ Models
+---
 
-#### `BaseAccount.cs`
+## 🗃️ **Core Models**
+
+### ✅ `BaseAccount.cs`
 Handles:
-- User login and registration
-- Password reset
-- Save user/customer via stored procedures
+- User login, registration, password reset
+- Communication with SQL Server stored procedures
 
-#### `BaseEquipment.cs`
-Keyless model for displaying customer data:
-- Properties: `CustId`, `CustName`, `ProductDetails`, `Address`, `PhoneNumber`, `Price`, etc.
+### ✅ `BaseProduct.cs`
+- Represents product structure (fetched from API)
+- Fields: `id`, `title`, `description`, `price`, `images`, etc.
 
-#### `BaseProduct.cs`
-Detailed product structure with:
-- Product metadata
-- Dimensions, tags, reviews, and images
-
-#### `DbConnection.cs`
-- Centralized connection string handler
-- Error logging via stored procedure
+### ✅ `BaseEquipment.cs`
+- Used for admin view of customer orders
+- Fields: `CustId`, `CustName`, `ProductDetails`, `Address`, `PhoneNumber`, `Price`, etc.
 
 ---
 
-## 🧮 Database Interaction
+## 🔌 API Usage
 
-- **Table:** `CoreMember`
-- **Stored Procedures:**
-  - `spCore_InsMember` — Insert a new member
-  - `spCore_InsCustomer` — Insert customer data
-  - `spCore_LstCustomer` — List customer/product data
-  - `spOst_InsErrorLog` — Log errors
+### 🌍 DummyJSON Product API Integration
+
+Products are **not stored in the local DB**, instead:
+- Product lists and details are fetched dynamically using `https://dummyjson.com/products`
+- Each item is rendered in the frontend using jQuery & Bootstrap
+- On "Add to Cart", data is fetched by `id` using `https://dummyjson.com/products/{id}`
+
+> ✅ This approach keeps the backend clean and simulates integration with a real product API.
 
 ---
 
-## 🖥️ Project Structure
+## 🛠️ Stored Procedures Used
+
+| Procedure             | Description                             |
+|-----------------------|-----------------------------------------|
+| `spCore_InsMember`    | Register new user in `CoreMember` table |
+| `spCore_InsCustomer`  | Save order data with customer info      |
+| `spCore_LstCustomer`  | Admin view of all customer orders       |
+| `spOst_InsErrorLog`   | Log internal errors                     |
+
+---
+
+
 
